@@ -76,11 +76,19 @@ select b.band_name,
   count(a.id) as num_albums
 from band as b
   left join album as a on b.id = a.band_id
-group by b.id
-  /*Lo mismo que el de arriba pero filtrando lo que tienen 1 album solamente*/
+group by b.id;
+/*Lo mismo que el de arriba pero filtrando lo que tienen 1 album solamente*/
 select b.band_name,
   count(a.id) as num_albums
 from band as b
   left join album as a on b.id = a.band_id
+group by b.id
+having num_albums = 1;
+/*me devuelve cuantos albunes tiene la banda que se llama como le indico*/
+select b.band_name as band_name,
+  count(a.id) as num_albums
+from band as b
+  left join album as a on b.id = a.band_id
+where band_name = 'Avenged Sevenfold'
 group by b.id
 having num_albums = 1;
