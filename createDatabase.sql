@@ -1,1 +1,1 @@
-e
+create database learning;
