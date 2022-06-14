@@ -46,10 +46,34 @@ select *
 from album
 where album_name like '%er%'
   or band_id = 2;
-/*seleccion con and-> Seleccionar los albunes lanzados antes del 2000
+/*seleccion con and -> Seleccionar los albunes lanzados antes del 2000
  y sean de la banda con id 2
  */
 select *
 from album
 where release_year < 3000
   and band_id = 2;
+/* -> Seleccionar todas las albunes de las bandas que tengan albunes registrados */
+select *
+from band
+  join album on band.id = album.band_id;
+/*
+ selecciona todas las bandas incluso las que no tienen albunes asociados
+ porque no hay albunes sin banda asociada
+ */
+select *
+from band
+  left join album on band.id = album.band_id;
+/*
+ selecciona todas las bandas incluso las que no tienen albunes asociados
+ es lo mismo de arriba pero cambiando el orden
+ */
+select *
+from album
+  right join band on band.id = album.band_id;
+/*Conteo de los albumes de cada banda asi la cantidad de albunes sea 0*/
+select b.band_name,
+  count(a.id) as num_albums
+from band as b
+  left join album as a on b.id = a.band_id
+group by b.id
