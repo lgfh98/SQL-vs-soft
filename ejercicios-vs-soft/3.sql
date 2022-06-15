@@ -4,7 +4,6 @@ from employee as e
   join department as d on e.department_id = d.id
 group by d.id
 having num_empleados >= 2;
-1
 /*Creacion de tablas para ejercicios 3,4*/
 /**/
 create table department(
